@@ -1,30 +1,166 @@
-<!doctype html>
-
-<html>
-	<head>
-		<title>Kevin Bae's Portfolio</title>
-		<meta charset = "UTF-8"/>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link href = "index.css" type = "text/css" rel = "stylesheet"/>
-		<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,800" rel="stylesheet"/>
-		<link rel="shortcut icon" 
-              type="image/x-icon" 
-              href="logo.png" />
-	</head>
-
-	<body>
-		<div id = "left_container">
-            <div id = "left_overlay"></div>
-		</div>
-		<div id = "right_container">
-            <div id = "right_overlay"></div>
-			<h1>Hi, I'm Kevin Bae</h1>
-			<p>I am a software engineer</p>
-			<div id = "links">
-				<div id = "resume_link"><a href = "resume.html">RESUME</a></div>
-				<div id = "bio_link"><a href = "bio.html">BIO</a></div>
-			</div>
-      
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kevin Bae</title>
+  <link rel="stylesheet" href="output.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&family=Noto+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body class="bg-parchment text-charcoal font-sans min-h-screen">
+  <main class="max-w-2xl mx-auto px-8 py-16">
+    <!-- Hero -->
+    <section class="mb-10 text-center">
+      <div class="flex flex-col items-center gap-3">
+        <div class="w-[72px] h-[72px] rounded-full bg-[#e8e0d4] shadow-md flex-shrink-0"></div>
+        <div>
+          <h1 class="font-serif text-[28px] font-bold text-charcoal tracking-tight leading-tight">Kevin Bae</h1>
+          <p class="text-[11px] uppercase tracking-[0.12em] text-text-muted mt-1.5">Software Engineer</p>
+          <div class="flex items-center justify-center gap-4 mt-3">
+            <a href="https://linkedin.com/in/kevin-bae15" target="_blank" rel="noopener noreferrer" class="text-charcoal hover:text-accent text-lg transition-colors" title="LinkedIn">
+              <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="https://github.com/kevinbae15" target="_blank" rel="noopener noreferrer" class="text-charcoal hover:text-accent text-lg transition-colors" title="GitHub">
+              <i class="fab fa-github"></i>
+            </a>
+            <a href="mailto:kevinbae15@gmail.com" class="text-charcoal hover:text-accent text-lg transition-colors" title="Email">
+              <i class="fas fa-envelope"></i>
+            </a>
+          </div>
         </div>
-	</body>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section class="mb-14">
+      <p class="text-[10px] uppercase tracking-[0.2em] text-accent mb-5">About</p>
+      <p class="text-[15px] leading-[1.8] text-text-secondary font-light max-w-[560px]">
+        Software engineer based in Los Angeles with 5+ years building distributed systems, developer tooling, and product features at scale. Currently a Staff Engineer at Robin, where I lead reliability and AI initiatives across the engineering division.
+      </p>
+    </section>
+
+    <!-- Timeline -->
+    <section class="mb-14">
+      <p class="text-[10px] uppercase tracking-[0.2em] text-accent mb-5">Timeline</p>
+      <div class="border-l border-ink-border pl-6 space-y-8">
+
+        <!-- Robin -->
+        <div class="relative">
+          <div class="absolute -left-[28px] top-[5px] w-[7px] h-[7px] rounded-full bg-accent"></div>
+          <p class="font-serif text-[15px] font-bold text-charcoal">Robin</p>
+          <div class="mt-3 space-y-5">
+            <div>
+              <p class="text-[12px] uppercase tracking-[0.06em] text-text-muted">Staff Software Engineer</p>
+              <p class="text-[11px] text-text-muted tracking-[0.04em] mt-0.5">Mar 2025 – Present</p>
+              <ul class="mt-2 space-y-1 list-disc list-outside pl-4">
+                <li class="text-[13px] text-text-secondary font-light leading-[1.6]">Designed a scalable audit log system for space bookings, processing 3M+ logs per week with fault-tolerant pipelines, partitioned tables and queues, and distributed asynchronous processing.</li>
+                <li class="text-[13px] text-text-secondary font-light leading-[1.6]">Migrated core backend services from AWS to GCP, implementing infrastructure-as-code patterns to ensure consistent performance and long-term cloud spend efficiency.</li>
+                <li class="text-[13px] text-text-secondary font-light leading-[1.6]">Created an AI code reviewer that has reviewed 500+ PRs, streamlining development and improving consistency in code quality across the engineering division.</li>
+              </ul>
+            </div>
+            <div>
+              <p class="text-[12px] uppercase tracking-[0.06em] text-text-muted">Senior Software Engineer</p>
+              <p class="text-[11px] text-text-muted tracking-[0.04em] mt-0.5">Jun 2023 – Mar 2025</p>
+              <ul class="mt-2 space-y-1 list-disc list-outside pl-4">
+                <li class="text-[13px] text-text-secondary font-light leading-[1.6]">Architected the "Suggested Spaces" feature with an 80%+ acceptance rate, increasing space booking utilization by 10%.</li>
+                <li class="text-[13px] text-text-secondary font-light leading-[1.6]">Led reliability initiative for a core space booking product used by over 80% of customers, reducing related bug tickets by 60% y-o-y.</li>
+                <li class="text-[13px] text-text-secondary font-light leading-[1.6]">Developed an automatic Wi-Fi check-in system with 2,500+ DAUs to detect user presence in the office.</li>
+              </ul>
+            </div>
+            <div>
+              <p class="text-[12px] uppercase tracking-[0.06em] text-text-muted">Software Engineer</p>
+              <p class="text-[11px] text-text-muted tracking-[0.04em] mt-0.5">Nov 2021 – Jun 2023</p>
+              <ul class="mt-2 space-y-1 list-disc list-outside pl-4">
+                <li class="text-[13px] text-text-secondary font-light leading-[1.6]">Architected a CQRS backend system for the "Activities" feature, enabling the creation of 9,000+ activities.</li>
+                <li class="text-[13px] text-text-secondary font-light leading-[1.6]">Built a high-priority announcement notification system enabling admins to communicate with teams and reach 200K+ users.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nextjump -->
+        <div class="relative">
+          <div class="absolute -left-[28px] top-[5px] w-[7px] h-[7px] rounded-full bg-ink-border"></div>
+          <p class="font-serif text-[15px] font-bold text-charcoal">Nextjump</p>
+          <div class="mt-3 space-y-5">
+            <div>
+              <p class="text-[12px] uppercase tracking-[0.06em] text-text-muted">Software Engineer</p>
+              <p class="text-[11px] text-text-muted tracking-[0.04em] mt-0.5">Aug 2020 – Nov 2021</p>
+              <ul class="mt-2 space-y-1 list-disc list-outside pl-4">
+                <li class="text-[13px] text-text-secondary font-light leading-[1.6]">Built a device login management system supporting remote sign-out of specific devices, adopted by 1,000+ users.</li>
+                <li class="text-[13px] text-text-secondary font-light leading-[1.6]">Implemented an internal refund service for the customer service team, reducing resolution time for customer issues.</li>
+              </ul>
+            </div>
+            <div>
+              <p class="text-[12px] uppercase tracking-[0.06em] text-text-muted">Software Engineer Intern</p>
+              <p class="text-[11px] text-text-muted tracking-[0.04em] mt-0.5">May 2019 – Aug 2019</p>
+              <ul class="mt-2 space-y-1 list-disc list-outside pl-4">
+                <li class="text-[13px] text-text-secondary font-light leading-[1.6]">Implemented additional employment verification methods on user sign up, increasing user registration rates by 10%.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Worldpay -->
+        <div class="relative">
+          <div class="absolute -left-[28px] top-[5px] w-[7px] h-[7px] rounded-full bg-ink-border"></div>
+          <p class="font-serif text-[15px] font-bold text-charcoal">Worldpay</p>
+          <div class="mt-3">
+            <p class="text-[12px] uppercase tracking-[0.06em] text-text-muted">Software Engineer Intern</p>
+            <p class="text-[11px] text-text-muted tracking-[0.04em] mt-0.5">Jan 2019 – May 2019</p>
+            <ul class="mt-2 space-y-1 list-disc list-outside pl-4">
+              <li class="text-[13px] text-text-secondary font-light leading-[1.6]">Created a real-time monitoring tool, improving observability with insights into hundreds of Worldpay's servers.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Tufts Technical Services -->
+        <div class="relative">
+          <div class="absolute -left-[28px] top-[5px] w-[7px] h-[7px] rounded-full bg-ink-border"></div>
+          <p class="font-serif text-[15px] font-bold text-charcoal">Tufts Technical Services</p>
+          <div class="mt-3">
+            <p class="text-[12px] uppercase tracking-[0.06em] text-text-muted">Software Engineer Intern</p>
+            <p class="text-[11px] text-text-muted tracking-[0.04em] mt-0.5">Oct 2018 – Jan 2019</p>
+            <ul class="mt-2 space-y-1 list-disc list-outside pl-4">
+              <li class="text-[13px] text-text-secondary font-light leading-[1.6]">Refactored an internal tool identifying users violating DMCA on Tufts University's network, improving maintainability and performance while boosting detection accuracy.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Tufts University -->
+        <div class="relative">
+          <div class="absolute -left-[28px] top-[5px] w-[7px] h-[7px] rounded-full bg-ink-border"></div>
+          <p class="font-serif text-[15px] font-bold text-charcoal">Tufts University</p>
+          <div class="mt-3">
+            <p class="text-[12px] uppercase tracking-[0.06em] text-text-muted">B.S. Computer Science</p>
+            <p class="text-[11px] text-text-muted tracking-[0.04em] mt-0.5">Sep 2016 – May 2020</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section class="pb-16">
+      <p class="text-[10px] uppercase tracking-[0.2em] text-accent mb-5">Projects</p>
+      <div class="space-y-3">
+
+        <div class="border border-ink-border p-5 hover:border-charcoal transition-colors">
+          <p class="font-serif text-[15px] font-bold text-charcoal">Textbook Exchange Network</p>
+          <p class="text-[13px] text-text-secondary font-light leading-[1.6] mt-2">
+            A textbook exchange platform facilitating $80K+ in transactions, expanded to 7 universities including NEU and OSU. Led multiple engineering teams and scaled the product to a multi-university platform while reducing operational overhead.
+          </p>
+          <div class="flex gap-2 mt-3 flex-wrap">
+            <span class="text-[10px] uppercase tracking-[0.1em] text-text-muted border border-ink-border px-2 py-0.5">Platform</span>
+            <span class="text-[10px] uppercase tracking-[0.1em] text-text-muted border border-ink-border px-2 py-0.5">Multi-university</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+</body>
 </html>
