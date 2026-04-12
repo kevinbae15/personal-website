@@ -48,6 +48,28 @@
       flex-shrink: 0;
       box-shadow: 0 2px 12px rgba(0,0,0,0.06);
     }
+
+    /* ── Glass card ── */
+    .card-wrap { position: relative; margin-bottom: 10px; }
+
+    .glass-card {
+      background: rgba(255,255,255,0.65);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.9);
+      border-radius: 14px;
+      padding: 18px 20px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.04);
+      cursor: pointer;
+    }
+
+    .card-name { font-size: 14px; font-weight: 500; color: #1c1c1e; }
+    .card-desc { font-size: 12px; color: #6e6e73; line-height: 1.6; font-weight: 300; margin-top: 5px; }
+    .card-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 12px; }
+    .card-tag {
+      font-size: 10px; text-transform: uppercase; letter-spacing: 0.07em;
+      color: #8e8e93; background: rgba(0,0,0,0.04); border-radius: 20px; padding: 3px 10px;
+    }
   </style>
 </head>
 <body class="bg-glass-bg text-text-primary font-sans min-h-screen" style="-webkit-font-smoothing: antialiased;">
@@ -79,7 +101,35 @@
       </p>
     </section>
 
-    <!-- Projects go here in the next task -->
+    <!-- Projects -->
+    <section class="fade-in delay-3">
+      <p class="text-[10px] uppercase text-text-faint mb-3.5" style="letter-spacing: 0.14em;">Projects</p>
+      <div>
+
+        <div class="card-wrap">
+          <div class="glass-card">
+            <div class="card-name">Textbook Exchange Network</div>
+            <div class="card-desc">A textbook exchange platform facilitating $80K+ in transactions, expanded to 7 universities including NEU and OSU.</div>
+            <div class="card-tags">
+              <span class="card-tag">Platform</span>
+              <span class="card-tag">Multi-university</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-wrap">
+          <div class="glass-card">
+            <div class="card-name">Project Two</div>
+            <div class="card-desc">Short description of what this project does and why it's interesting.</div>
+            <div class="card-tags">
+              <span class="card-tag">Backend</span>
+              <span class="card-tag">API</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
 
   </main>
 </body>
