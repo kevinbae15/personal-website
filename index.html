@@ -61,6 +61,7 @@
       padding: 18px 20px;
       box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.04);
       cursor: pointer;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
     }
 
     .card-name { font-size: 14px; font-weight: 500; color: #1c1c1e; }
@@ -69,6 +70,46 @@
     .card-tag {
       font-size: 10px; text-transform: uppercase; letter-spacing: 0.07em;
       color: #8e8e93; background: rgba(0,0,0,0.04); border-radius: 20px; padding: 3px 10px;
+    }
+
+    /* ── Card hover ── */
+    .glass-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06), 0 8px 24px rgba(0,0,0,0.07);
+      border-color: rgba(99,102,241,0.2);
+    }
+
+    /* ── Hover preview image ── */
+    .hover-preview {
+      position: absolute;
+      right: -200px; top: 0;
+      width: 180px; height: 120px;
+      border-radius: 12px; overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+      border: 1px solid rgba(255,255,255,0.9);
+      opacity: 0;
+      transform: translateX(-8px) scale(0.96);
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      pointer-events: none;
+      background: rgba(255,255,255,0.8);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+    .card-wrap:hover .hover-preview {
+      opacity: 1;
+      transform: translateX(0) scale(1);
+    }
+    .preview-inner {
+      width: 100%; height: 100%;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      background: linear-gradient(135deg, #e8e8f0, #d8d8e8);
+      gap: 6px;
+    }
+    .preview-icon { font-size: 28px; }
+    .preview-label {
+      font-size: 9px; text-transform: uppercase;
+      letter-spacing: 0.1em; color: #8e8e93;
     }
   </style>
 </head>
@@ -107,7 +148,7 @@
       <div>
 
         <div class="card-wrap">
-          <div class="glass-card">
+          <div class="glass-card" onclick="openProject(this, 0)">
             <div class="card-name">Textbook Exchange Network</div>
             <div class="card-desc">A textbook exchange platform facilitating $80K+ in transactions, expanded to 7 universities including NEU and OSU.</div>
             <div class="card-tags">
@@ -115,15 +156,27 @@
               <span class="card-tag">Multi-university</span>
             </div>
           </div>
+          <div class="hover-preview">
+            <div class="preview-inner">
+              <div class="preview-icon">📚</div>
+              <div class="preview-label">Preview</div>
+            </div>
+          </div>
         </div>
 
         <div class="card-wrap">
-          <div class="glass-card">
+          <div class="glass-card" onclick="openProject(this, 1)">
             <div class="card-name">Project Two</div>
             <div class="card-desc">Short description of what this project does and why it's interesting.</div>
             <div class="card-tags">
               <span class="card-tag">Backend</span>
               <span class="card-tag">API</span>
+            </div>
+          </div>
+          <div class="hover-preview">
+            <div class="preview-inner">
+              <div class="preview-icon">🛠</div>
+              <div class="preview-label">Preview</div>
             </div>
           </div>
         </div>
