@@ -642,12 +642,24 @@ video {
   font-size: 13px;
 }
 
+.text-\[14px\] {
+  font-size: 14px;
+}
+
 .text-\[20px\] {
   font-size: 20px;
 }
 
+.font-light {
+  font-weight: 300;
+}
+
 .font-semibold {
   font-weight: 600;
+}
+
+.leading-\[1\.75\] {
+  line-height: 1.75;
 }
 
 .tracking-tight {
@@ -662,6 +674,11 @@ video {
 .text-text-primary {
   --tw-text-opacity: 1;
   color: rgb(28 28 30 / var(--tw-text-opacity, 1));
+}
+
+.text-text-secondary {
+  --tw-text-opacity: 1;
+  color: rgb(58 58 60 / var(--tw-text-opacity, 1));
 }
 
 .antialiased {
