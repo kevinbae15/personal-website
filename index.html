@@ -136,7 +136,7 @@
     }
     .panel.open .panel-inner {
       opacity: 1;
-      transition-delay: 0.35s;
+      transition-delay: 0.42s;
     }
 
     .panel-header {
@@ -349,13 +349,16 @@
           panel.style.clipPath = 'inset(0px 0px 0px 0px round 0px)';
           panel.classList.add('open');
           listView.classList.add('dimmed');
+          document.body.style.overflow = 'hidden';
         });
       });
     }
 
     function closeProject() {
+      if (!isOpen) return;
       panel.classList.remove('open');
       listView.classList.remove('dimmed');
+      document.body.style.overflow = '';
 
       setTimeout(() => {
         panel.style.transition = `clip-path ${Math.round(EXPAND_MS * 0.85)}ms ${EASE}`;
