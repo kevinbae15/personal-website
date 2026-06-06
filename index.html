@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kevin Bae</title>
+  <meta name="description" content="Kevin Bae — Staff Software Engineer based in Los Angeles, building distributed systems and developer tooling at scale.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="output.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -72,11 +74,27 @@
       color: #8e8e93; background: rgba(0,0,0,0.04); border-radius: 20px; padding: 3px 10px;
     }
 
+    /* ── Card focus (keyboard) ── */
+    .glass-card:focus-visible {
+      outline: 2px solid rgba(99,102,241,0.6);
+      outline-offset: 2px;
+    }
+
     /* ── Card hover ── */
     .glass-card:hover {
       transform: translateY(-2px);
       box-shadow: 0 2px 6px rgba(0,0,0,0.06), 0 8px 24px rgba(0,0,0,0.07);
       border-color: rgba(99,102,241,0.2);
+    }
+
+    /* ── Archived chip ── */
+    .archived-chip {
+      display: inline-block;
+      font-size: 9px; text-transform: uppercase; letter-spacing: 0.08em;
+      color: #8e8e93; background: rgba(0,0,0,0.06);
+      border-radius: 20px; padding: 2px 8px;
+      margin-left: 7px; vertical-align: middle;
+      position: relative; top: -1px;
     }
 
     /* ── Hover preview image ── */
@@ -98,6 +116,9 @@
     .card-wrap:hover .hover-preview {
       opacity: 1;
       transform: translateX(0) scale(1);
+    }
+    .hover-preview img {
+      width: 100%; height: 100%; object-fit: cover; object-position: top left;
     }
     .preview-inner {
       width: 100%; height: 100%;
@@ -157,8 +178,11 @@
 
     .panel-body {
       flex: 1; overflow-y: auto;
+      width: 100%;
+    }
+    .panel-body-inner {
       padding: 52px 32px 64px;
-      max-width: 680px; margin: 0 auto; width: 100%;
+      max-width: 680px; margin: 0 auto;
     }
 
     .panel-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
@@ -179,6 +203,10 @@
       margin-bottom: 32px;
       display: flex; align-items: center; justify-content: center;
       font-size: 52px; border: 1px solid rgba(0,0,0,0.06);
+      overflow: hidden;
+    }
+    .panel-image img {
+      width: 100%; height: 100%; object-fit: cover; object-position: top left;
     }
 
     .panel-desc {
@@ -199,17 +227,65 @@
     /* Dim list while panel is open */
     .list-view { transition: opacity 0.25s ease; }
     .list-view.dimmed { opacity: 0; pointer-events: none; }
+
+    /* ── Mobile ── */
+    @media (max-width: 679px) {
+      /* Hide hover preview — no hover on touch, no room on right */
+      .hover-preview { display: none; }
+
+      /* Center all page text */
+      main { text-align: center; }
+
+      /* Hero: stack vertically, center */
+      .hero-section {
+        flex-direction: column;
+        align-items: center;
+        gap: 14px;
+      }
+      /* Social links row → centered */
+      .hero-section .flex { justify-content: center; }
+
+      /* Card tags → centered */
+      .card-tags { justify-content: center; }
+
+      /* Panel: tighter horizontal padding */
+      .panel-header { padding: 16px 20px; }
+      .panel-body-inner { padding: 32px 20px 48px; }
+
+      /* Panel title: slightly smaller */
+      .panel-title { font-size: 22px; }
+
+      /* Panel tags → centered */
+      .panel-tags { justify-content: center; }
+    }
+
+    /* ── Reduced motion ── */
+    @media (prefers-reduced-motion: reduce) {
+      .fade-in {
+        animation: none;
+        opacity: 1;
+        transform: none;
+      }
+      .glass-card,
+      .hover-preview,
+      .panel-inner,
+      .list-view,
+      .back-btn,
+      .panel-link {
+        transition: none;
+      }
+    }
   </style>
 </head>
 <body class="bg-glass-bg text-text-primary font-sans min-h-screen" style="-webkit-font-smoothing: antialiased;">
   <main id="listView" class="list-view max-w-[480px] mx-auto px-6 py-[72px]">
 
     <!-- Hero -->
-    <section class="flex items-center gap-[18px] mb-10 fade-in delay-1">
+    <section class="hero-section flex items-center gap-[18px] mb-10 fade-in delay-1">
       <div class="avatar"></div>
       <div>
         <h1 class="text-[20px] font-semibold tracking-tight">Kevin Bae</h1>
-        <p class="text-[12px] text-text-muted mt-0.5" style="letter-spacing: 0.02em;">Staff Software Engineer</p>
+        <p class="text-[12px] text-text-muted mt-0.5" style="letter-spacing: 0.02em;">Software Engineer</p>
         <div class="flex gap-[14px] mt-2.5">
           <a href="https://linkedin.com/in/kevin-bae15" target="_blank" rel="noopener noreferrer"
              class="text-[13px] text-text-muted hover:text-text-primary transition-colors duration-150">LinkedIn</a>
@@ -225,8 +301,7 @@
     <section class="mb-10 fade-in delay-2">
       <p class="text-[14px] leading-[1.75] text-text-secondary font-light">
         Software engineer based in Los Angeles with 5+ years building distributed systems,
-        developer tooling, and product features at scale. Currently leading reliability
-        and AI initiatives at Robin.
+        developer tooling, and product features at scale. Currently at <a href="https://robinpowered.com/"  class="text-text-muted hover:text-text-primary transition-colors duration-150">Robin</a>.
       </p>
     </section>
 
@@ -236,34 +311,33 @@
       <div>
 
         <div class="card-wrap">
-          <div class="glass-card" onclick="openProject(this, 0)">
-            <div class="card-name">Textbook Exchange Network</div>
-            <div class="card-desc">A textbook exchange platform facilitating $80K+ in transactions, expanded to 7 universities including NEU and OSU.</div>
+          <div class="glass-card" role="button" tabindex="0" onclick="openProject(this, 0)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openProject(this,0)}">
+            <div class="card-name">Textbook Exchange Network<span class="archived-chip">Archived</span></div>
+            <div class="card-desc">Peer-to-peer textbook marketplace that processed $80K+ in transactions and scaled across 7 universities.</div>
             <div class="card-tags">
-              <span class="card-tag">Platform</span>
-              <span class="card-tag">Multi-university</span>
+              <span class="card-tag">Django</span>
+              <span class="card-tag">React</span>
+              <span class="card-tag">Leadership Role</span>
             </div>
           </div>
           <div class="hover-preview">
-            <div class="preview-inner">
-              <div class="preview-icon">📚</div>
-              <div class="preview-label">Preview</div>
-            </div>
+            <img src="assets/ten-screenshot.png" alt="Textbook Exchange Network">
           </div>
         </div>
 
         <div class="card-wrap">
-          <div class="glass-card" onclick="openProject(this, 1)">
-            <div class="card-name">Project Two</div>
-            <div class="card-desc">Short description of what this project does and why it's interesting.</div>
+          <div class="glass-card" role="button" tabindex="0" onclick="openProject(this, 1)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openProject(this,1)}">
+            <div class="card-name">Resy Rob<span class="archived-chip">Archived</span></div>
+            <div class="card-desc">Reservation-sniping bot built to reclaim tables from bots at NYC's top restaurants. Grew from a single Lambda function into a full-stack self-service app.</div>
             <div class="card-tags">
-              <span class="card-tag">Backend</span>
-              <span class="card-tag">API</span>
+              <span class="card-tag">AWS Lambda</span>
+              <span class="card-tag">React</span>
+              <span class="card-tag">GraphQL</span>
             </div>
           </div>
           <div class="hover-preview">
             <div class="preview-inner">
-              <div class="preview-icon">🛠</div>
+              <div class="preview-icon">🍽️</div>
               <div class="preview-label">Preview</div>
             </div>
           </div>
@@ -280,7 +354,7 @@
       <div class="panel-header">
         <button class="back-btn" onclick="closeProject()">← Back</button>
       </div>
-      <div class="panel-body" id="panelBody"></div>
+      <div class="panel-body" id="panelBody"><div class="panel-body-inner" id="panelBodyInner"></div></div>
     </div>
   </div>
 
@@ -291,24 +365,28 @@
     const projects = [
       {
         title: 'Textbook Exchange Network',
-        icon: '📚',
-        tags: ['Platform', 'Multi-university', 'Marketplace'],
+        slug: 'textbook-exchange-network',
+        archived: true,
+        image: 'assets/ten-screenshot.png',
+        tags: ['Django', 'React', 'Leadership Role'],
         desc: [
-          'Built and scaled a peer-to-peer textbook marketplace that processed over $80,000 in student transactions. Expanded from a single campus pilot to 7 universities including Northeastern and Ohio State.',
-          'Handled listing management, full-text search, in-app messaging, and payment flows. Designed the matching algorithm that surfaced relevant listings by ISBN, course code, and campus proximity.'
+          'During my freshman year (2017), two of my college friends and I decided to tackle textbook affordability. We built a marketplace facilitated by our application that allowed students to buy used textbooks at a fraction of the price while also letting them list their textbooks to recuperate their money the following semester. What began as a Google Sheets + Apps Script operation on one campus grew into a multi-team engineering effort with a microservice architecture, expanding to 7 universities including Northeastern, Ohio State, and Oxford. We became a Tufts 100K New Venture Competition Finalist and saved students tens of thousands of dollars.',
+          'Our engineering team grew to 10+ and after I graduated, the team was self-sufficient and continued operations. The friends I started this with and I would continue to contribute in a limited capacity. Unfortunately, after COVID and diminishing funding, we shutdown operations in 2025.'
         ],
-        link: '#'
+        link: null
       },
       {
-        title: 'Project Two',
-        icon: '🛠',
-        tags: ['Backend', 'API'],
+        title: 'Resy Rob',
+        slug: 'resy-rob',
+        archived: true,
+        icon: '🍽️',
+        tags: ['AWS', 'React', 'GraphQL'],
         desc: [
-          'Full description of project two. What problem does it solve, how was it built, and what is technically interesting about it?',
-          'Architecture, challenges, and outcome go here.'
+          'In 2023, trying to snag reservations in NYC at popular restaurants seemed impossible. Reservation services like Resy would allow restaurants to release their reservations at a scheduled time. However, when the time came, it was clear that bots would snap up these reservations faster than a human could. I remember specifically wanting to go to "Double Chicken Please". To level the playing field, I built my own bot. I reverse-engineered Resy\'s API and deployed a Lambda function triggered by EventBridge that would attempt to get the reservation the moment they dropped and poll for cancellations throughout the day. A few months in, my manager asked to use it, so I built a self-service UI with Next.js and a GraphQL backend, dockerized and deployed on Northflank with a Supabase DB to track ongoing schedules.',
+          'Soon afterwards, NYC passed anti-bot legislation and Resy would block my IP (thankfully I convinced them to unblock me on the basis that I stop using my bot). Before then, Resy Rob secured tables at top NYC restaurants like Tatiana, Don Angie, Misi, Lilia, Jeju Noodle Bar, and more.'
         ],
-        link: '#'
-      }
+        link: 'https://github.com/kevinbae15/resy-rob-public'
+      },
     ];
 
     let isOpen = false;
@@ -323,49 +401,68 @@
       return `inset(${rect.top.toFixed(1)}px ${(vw - rect.right).toFixed(1)}px ${(vh - rect.bottom).toFixed(1)}px ${rect.left.toFixed(1)}px round 14px)`;
     }
 
-    function openProject(card, idx) {
-      if (isOpen) return;
-      isOpen = true;
-
+    function renderPanel(idx) {
       const proj = projects[idx];
+      const imageContent = proj.image
+        ? `<img src="${proj.image}" alt="${proj.title}">`
+        : proj.icon;
+      const archivedChip = proj.archived
+        ? `<span class="archived-chip" style="font-size:10px;margin-left:10px;">Archived</span>`
+        : '';
+      const linkHTML = proj.link
+        ? `<a class="panel-link" href="${proj.link}">View project ↗</a>`
+        : '';
+      document.getElementById('panelBody').scrollTop = 0;
+      document.getElementById('panelBodyInner').innerHTML = `
+        <div class="panel-tags">${proj.tags.map(t => `<span class="panel-tag">${t}</span>`).join('')}</div>
+        <div class="panel-title">${proj.title}${archivedChip}</div>
+        <div class="panel-image">${imageContent}</div>
+        <div class="panel-desc">${proj.desc.map(p => `<p>${p}</p>`).join('')}</div>
+        ${linkHTML}
+      `;
+    }
+
+    function _doOpen(card, idx, animate = true) {
+      isOpen = true;
+      renderPanel(idx);
+
       const rect = card.getBoundingClientRect();
       sourceClip = cardClip(rect);
 
-      document.getElementById('panelBody').innerHTML = `
-        <div class="panel-tags">${proj.tags.map(t => `<span class="panel-tag">${t}</span>`).join('')}</div>
-        <div class="panel-title">${proj.title}</div>
-        <div class="panel-image">${proj.icon}</div>
-        <div class="panel-desc">${proj.desc.map(p => `<p>${p}</p>`).join('')}</div>
-        <a class="panel-link" href="${proj.link}">View project ↗</a>
-      `;
-
-      // Snap clip to card position (instant), then animate to full-screen
       panel.style.transition = 'clip-path 0s';
-      panel.style.clipPath = sourceClip;
+      panel.style.clipPath = animate ? sourceClip : 'inset(0px 0px 0px 0px round 0px)';
+      panel.classList.add('open');
+      listView.classList.add('dimmed');
+      document.body.style.overflow = 'hidden';
 
-      requestAnimationFrame(() => {
+      if (animate) {
         requestAnimationFrame(() => {
-          panel.style.transition = `clip-path ${EXPAND_MS}ms ${EASE}`;
-          panel.style.clipPath = 'inset(0px 0px 0px 0px round 0px)';
-          panel.classList.add('open');
-          listView.classList.add('dimmed');
-          document.body.style.overflow = 'hidden';
+          requestAnimationFrame(() => {
+            panel.style.transition = `clip-path ${EXPAND_MS}ms ${EASE}`;
+            panel.style.clipPath = 'inset(0px 0px 0px 0px round 0px)';
+          });
         });
-      });
+      }
     }
 
-    function closeProject() {
-      if (!isOpen) return;
+    function _doClose() {
       panel.classList.remove('open');
       listView.classList.remove('dimmed');
       document.body.style.overflow = '';
+
+      if (prefersReducedMotion()) {
+        panel.style.transition = 'clip-path 0s';
+        panel.style.clipPath = 'inset(50% 50% 50% 50% round 14px)';
+        isOpen = false;
+        sourceClip = null;
+        return;
+      }
 
       setTimeout(() => {
         panel.style.transition = `clip-path ${Math.round(EXPAND_MS * 0.85)}ms ${EASE}`;
         panel.style.clipPath = sourceClip;
 
         setTimeout(() => {
-          // Snap fully hidden so the card underneath is visible
           panel.style.transition = 'clip-path 0s';
           panel.style.clipPath = 'inset(50% 50% 50% 50% round 14px)';
           isOpen = false;
@@ -373,6 +470,44 @@
         }, Math.round(EXPAND_MS * 0.85));
       }, 150);
     }
+
+    const prefersReducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function openProject(card, idx) {
+      if (isOpen) return;
+      history.pushState({ projectIdx: idx }, '', '#' + projects[idx].slug);
+      _doOpen(card, idx, !prefersReducedMotion());
+    }
+
+    function closeProject() {
+      if (!isOpen) return;
+      history.back();
+    }
+
+    window.addEventListener('popstate', (e) => {
+      if (e.state && typeof e.state.projectIdx === 'number') {
+        if (!isOpen) {
+          const cards = document.querySelectorAll('.glass-card');
+          _doOpen(cards[e.state.projectIdx], e.state.projectIdx);
+        }
+      } else {
+        if (isOpen) _doClose();
+      }
+    });
+
+    // Handle direct URL load (e.g. bookmark or shared link)
+    document.addEventListener('DOMContentLoaded', () => {
+      history.replaceState({ root: true }, '', location.pathname + location.search);
+      const hash = location.hash.slice(1);
+      if (hash) {
+        const idx = projects.findIndex(p => p.slug === hash);
+        if (idx !== -1) {
+          history.pushState({ projectIdx: idx }, '', '#' + projects[idx].slug);
+          const cards = document.querySelectorAll('.glass-card');
+          _doOpen(cards[idx], idx, false);
+        }
+      }
+    });
   </script>
 </body>
 </html>
