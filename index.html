@@ -43,6 +43,7 @@
       width: 64px;
       height: 64px;
       border-radius: 50%;
+      object-fit: cover;
       background: rgba(255,255,255,0.6);
       border: 1px solid rgba(0,0,0,0.08);
       backdrop-filter: blur(8px);
@@ -50,6 +51,13 @@
       flex-shrink: 0;
       box-shadow: 0 2px 12px rgba(0,0,0,0.06);
     }
+
+    .robin-link {
+      color: #3c0222;
+      font-weight: 600;
+      transition: color 0.15s;
+    }
+    .robin-link:hover { color: #2a0118; }
 
     /* ── Glass card ── */
     .card-wrap { position: relative; margin-bottom: 10px; }
@@ -282,7 +290,7 @@
 
     <!-- Hero -->
     <section class="hero-section flex items-center gap-[18px] mb-10 fade-in delay-1">
-      <div class="avatar"></div>
+      <img class="avatar" src="assets/me.png" alt="Kevin Bae">
       <div>
         <h1 class="text-[20px] font-semibold tracking-tight">Kevin Bae</h1>
         <p class="text-[12px] text-text-muted mt-0.5" style="letter-spacing: 0.02em;">Software Engineer</p>
@@ -301,7 +309,7 @@
     <section class="mb-10 fade-in delay-2">
       <p class="text-[14px] leading-[1.75] text-text-secondary font-light">
         Software engineer based in Los Angeles with 5+ years building distributed systems,
-        developer tooling, and product features at scale. Currently at <a href="https://robinpowered.com/"  class="text-text-muted hover:text-text-primary transition-colors duration-150">Robin</a>.
+        developer tooling, and product features at scale. Currently at <a href="https://robinpowered.com/" class="robin-link">Robin</a>.
       </p>
     </section>
 
@@ -336,10 +344,21 @@
             </div>
           </div>
           <div class="hover-preview">
-            <div class="preview-inner">
-              <div class="preview-icon">🍽️</div>
-              <div class="preview-label">Preview</div>
+            <img src="assets/resy-rob.png" alt="Resy Rob">
+          </div>
+        </div>
+
+        <div class="card-wrap">
+          <div class="glass-card" role="button" tabindex="0" onclick="openProject(this, 2)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openProject(this,2)}">
+            <div class="card-name">Bionic Reading</div>
+            <div class="card-desc">Chrome extension that automatically applies the Bionic Reading technique to any website, enhancing readability and comprehension by bolding the first few letters of each word.</div>
+            <div class="card-tags">
+              <span class="card-tag">Chrome Extension</span>
+              <span class="card-tag">JavaScript</span>
             </div>
+          </div>
+          <div class="hover-preview">
+            <img src="assets/bionic-reader.png" alt="Bionic Reading">
           </div>
         </div>
 
@@ -379,13 +398,25 @@
         title: 'Resy Rob',
         slug: 'resy-rob',
         archived: true,
-        icon: '🍽️',
+        image: 'assets/resy-rob.png',
         tags: ['AWS', 'React', 'GraphQL'],
         desc: [
           'In 2023, trying to snag reservations in NYC at popular restaurants seemed impossible. Reservation services like Resy would allow restaurants to release their reservations at a scheduled time. However, when the time came, it was clear that bots would snap up these reservations faster than a human could. I remember specifically wanting to go to "Double Chicken Please". To level the playing field, I built my own bot. I reverse-engineered Resy\'s API and deployed a Lambda function triggered by EventBridge that would attempt to get the reservation the moment they dropped and poll for cancellations throughout the day. A few months in, my manager asked to use it, so I built a self-service UI with Next.js and a GraphQL backend, dockerized and deployed on Northflank with a Supabase DB to track ongoing schedules.',
           'Soon afterwards, NYC passed anti-bot legislation and Resy would block my IP (thankfully I convinced them to unblock me on the basis that I stop using my bot). Before then, Resy Rob secured tables at top NYC restaurants like Tatiana, Don Angie, Misi, Lilia, Jeju Noodle Bar, and more.'
         ],
         link: 'https://github.com/kevinbae15/resy-rob-public'
+      },
+      {
+        title: 'Bionic Reading',
+        slug: 'bionic-reading',
+        archived: false,
+        image: 'assets/bionic-reader.png',
+        tags: ['Chrome Extension', 'JavaScript'],
+        desc: [
+          'The first chrome extension I\'ve built automatically applies the Bionic Reading technique to any website, enhancing readability and comprehension by bolding the first few letters of each word.',
+          'Bionic Reading is a reading technique that guides the eyes through text by bolding the first few letters of each word. This creates "fixation points" that help the brain complete the word, allowing for faster reading and better comprehension.'
+        ],
+        link: 'https://github.com/kevinbae15/bionic-reader'
       },
     ];
 
